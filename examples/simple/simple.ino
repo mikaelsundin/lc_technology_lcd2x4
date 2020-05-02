@@ -9,7 +9,7 @@
 Led2x4 led;
 
 void setup() {
-  led.begin(2,3); //Pin 2 data, Pin 3 clock
+  led.begin(data_pin,clk_pin); //Pin 2 data, Pin 3 clock
 
   led.write(0,0);
   led.write(1,1);
