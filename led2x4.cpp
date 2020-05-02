@@ -25,7 +25,7 @@ void Led2x4::refresh(void){
 
 }
 
-void Led2x4::write(uint8_t digit, uint8_t value){
+void Led2x4::write(uint8_t digit, uint8_t value, bool dot=false){
   uint8_t lookup[] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
   uint8_t tmp;
 
@@ -39,8 +39,9 @@ void Led2x4::write(uint8_t digit, uint8_t value){
     return;
   }
   
-  tmp = lookup[digit];
-  //tmp |= dot ? 0x80 : 0x00;
+  // tmp = lookup[digit]; -> ther was an error :(
+  tmp = lookup[value];
+  tmp |= dot ? 0x80 : 0x00; // add 0x80 if dot shall be lit
   
   _out[digit] = ~tmp;
 }
